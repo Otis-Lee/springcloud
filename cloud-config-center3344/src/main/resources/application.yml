@@ -1,0 +1,31 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:Otis-Lee/springcloud-config.git
+          search-paths:
+            - springcoud-config
+      label: master
+  rabbitmq:
+    host: 192.168.0.106
+    port: 5672
+    username: user
+    password: 123456
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: ConfigCenter3344
+    prefer-ip-address: true  #访问路径可以显示IP地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
